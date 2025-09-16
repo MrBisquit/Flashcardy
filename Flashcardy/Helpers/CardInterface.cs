@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Flashcardy.Types;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace Flashcardy.Helpers
 {
     public static class CardInterface
     {
-        public static Types.CardInterface GenerateCard(Types.Flashcard card, bool edit)
+        public static Types.CardInterface GenerateCard(Types.Flashcard card, bool edit,
+            Types.Set set)
         {
             Types.CardInterface cardInterface = new();
             cardInterface.EditMode = edit;
@@ -65,8 +67,11 @@ namespace Flashcardy.Helpers
 
                 cardInterface.Edit.NameTB.Text = card.Name;
                 cardInterface.Edit.DescTB.Text = card.Description;
-                cardInterface.Edit.IDTB.Text = card.Identifier;
+                cardInterface.Edit.IDTB.Text = set.LinkedID ? set.Identifier :
+                    card.Identifier;
                 cardInterface.Edit.AnswerTB.Text = card.Answer;
+
+                if(set.LinkedID) cardInterface.Edit.IDTB.IsEnabled = false;
 
                 cardInterface.ContentStackPanel.Children.Add(cardInterface.Edit.NameLabel);
                 cardInterface.ContentStackPanel.Children.Add(cardInterface.Edit.NameTB);
@@ -98,7 +103,8 @@ namespace Flashcardy.Helpers
 
                 cardInterface.Normal.Name.Text = card.Name;
                 cardInterface.Normal.Desc.Text = card.Description;
-                cardInterface.Normal.ID.Text = card.Identifier;
+                cardInterface.Normal.ID.Text = set.LinkedID ? set.Identifier :
+                    card.Identifier;
                 cardInterface.Normal.Answer.Text = $"Answer: {card.Answer}";
 
                 cardInterface.Normal.Name.FontSize = 17;

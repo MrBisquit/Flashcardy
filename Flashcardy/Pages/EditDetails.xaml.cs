@@ -58,6 +58,7 @@ namespace Flashcardy.Pages
                 NameTB.Text = set.Name;
                 DescTB.Text = set.Description;
                 IDTB.Text = set.Identifier;
+                LinkedIDs.IsChecked = set.LinkedID;
 
                 SaveableContent = false;
                 MainWindow.CanSave(this, false);
@@ -118,11 +119,18 @@ namespace Flashcardy.Pages
             MainWindow.CanSave(this, true);
         }
 
+        private void LinkedIDs_Click(object sender, RoutedEventArgs e)
+        {
+            SaveableContent = true;
+            MainWindow.CanSave(this, true);
+        }
+
         private void Save()
         {
             set.Name = NameTB.Text;
             set.Description = DescTB.Text;
             set.Identifier = IDTB.Text;
+            set.LinkedID = LinkedIDs.IsChecked == true;
             Helpers.Loading.SaveSet(set);
 
             SaveableContent = false;

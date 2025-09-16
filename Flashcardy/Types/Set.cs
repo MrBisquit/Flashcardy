@@ -13,6 +13,7 @@ namespace Flashcardy.Types
         public string Name              { get; set; } = string.Empty;
         public string Description       { get; set; } = string.Empty;
         public string Identifier        { get; set; } = string.Empty;
+        public bool LinkedID            { get; set; } = true;
         public List<Flashcard> cards    { get; set; } = new();
     }
 
@@ -23,5 +24,6 @@ namespace Flashcardy.Types
         public string Name              { get; set; } = string.Empty;
         public string Description       { get; set; } = string.Empty;
         public string Identifier        { get; set; } = string.Empty;
+        public bool LinkedID            { get; set; } = true;
     }
 }

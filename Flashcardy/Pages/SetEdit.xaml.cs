@@ -189,7 +189,7 @@ namespace Flashcardy.Pages
             for (int i = 0; i < set.cards.Count; i++)
             {
                 Types.CardInterface card =
-                    Helpers.CardInterface.GenerateCard(set.cards[i], Editing == i);
+                    Helpers.CardInterface.GenerateCard(set.cards[i], Editing == i, set);
 
                 cards.Add(card);
                 Cards.Children.Add(card.Border);

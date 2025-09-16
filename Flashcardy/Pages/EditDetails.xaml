@@ -86,8 +86,23 @@
                 </StackPanel>
 
                 <Separator Height="5" />
+
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Linked identifiers:</Label>
+                        <ui:ToggleSwitch Margin="10, 0, 0, 0"
+                                         Name="LinkedIDs" Click="LinkedIDs_Click"
+                                         IsChecked="{x:Null}" />
+                    </StackPanel>
+                    <ui:TextBlock Margin="5, 0, 0, 0" VerticalAlignment="Center">
+                        If enabled, every card will have the above identifier.
+                        If not, they can each have their own identifier.
+                    </ui:TextBlock>
+                </StackPanel>
+
+                <Separator Height="5" Width="0" />
                 <Separator Height="1" Background="Black" />
-                <Separator Height="5" />
+                <Separator Height="5" Width="0" />
 
                 <TextBlock>Dangerous actions:</TextBlock>
                 <Separator Height="5" />

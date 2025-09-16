@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Flashcardy.Types.Exporters.PPTX
 {
-    public class Faceplate
+    public class Backplate
     {
         public Enums.PlateType Type { get; set; }
         public Flashcard LinkedCard { get; set; }
 
-        public Faceplate() { }
-        public Faceplate(Enums.PlateType type, Flashcard linkedCard)
+        public Backplate() { }
+        public Backplate(Enums.PlateType type, Flashcard linkedCard)
         {
             Type = type;
             LinkedCard = linkedCard;
