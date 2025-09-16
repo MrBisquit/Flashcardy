@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Wpf.Ui.Violeta.Controls;
+using Wpf.Ui.Controls;
 
 namespace Flashcardy.Pages
 {
@@ -42,6 +42,7 @@ namespace Flashcardy.Pages
             switch (ExportType.SelectedIndex)
             {
                 case 0:
+                    ExportPPTX();
                     break;
                 case 1:
                     break;
@@ -76,6 +77,34 @@ namespace Flashcardy.Pages
             if(sfd.ShowDialog() == true)
             {
                 Helpers.Loading.ExportSet(sfd.FileName, set);
+            }
+        }
+
+        private async void ExportPPTX()
+        {
+            VistaSaveFileDialog sfd = new VistaSaveFileDialog()
+            {
+                Title = "Select a PowerPoint File",
+                Filter = "PowerPoint Files (*.ppt;*.pptx;*.pptm)|*.ppt;*.pptx;*.pptm|All Files (*.*)|*.*",
+                AddExtension = true
+            };
+
+            if (sfd.ShowDialog() == true)
+            {
+                bool success = Exporters.PPTX.PPTXExport.StartExport(set, sfd.FileName,
+                    PPPSize.SelectedIndex, PPPMode.SelectedIndex);
+
+                if(!success)
+                {
+                    ContentDialog contentDialog = new ContentDialog(DialogPresenter);
+
+                    contentDialog.SetCurrentValue(ContentDialog.TitleProperty, "Failed to export PowerPoint");
+                    contentDialog.SetCurrentValue(ContentControl.ContentProperty, "There was an unknown error " +
+                        "while trying to export your flashcard set to\na PowerPoint, either try again later, " +
+                        "or try updating the app.");
+
+                    await contentDialog.ShowAsync();
+                }
             }
         }
 
@@ -120,7 +149,7 @@ namespace Flashcardy.Pages
 
                     break;
                 case 2:
-                    TextBlock no = new()
+                    Wpf.Ui.Controls.TextBlock no = new()
                     {
                         Text = "No preview available for this export type",
                         HorizontalAlignment = HorizontalAlignment.Center,
