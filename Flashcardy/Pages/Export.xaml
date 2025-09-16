@@ -1,0 +1,134 @@
+﻿<Page x:Class="Flashcardy.Pages.Export"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Flashcardy.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Export">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ContentPresenter Grid.RowSpan="2" Name="DialogPresenter" Panel.ZIndex="1" />
+
+        <Border BorderThickness="0, 0, 0, 1" BorderBrush="#A2A2A2" Panel.ZIndex="0">
+            <Grid Margin="15">
+                <TextBlock FontSize="25" FontWeight="SemiBold">
+                <Italic>
+                    Flashcardy
+                </Italic>
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ui:Button Appearance="Secondary"
+                    Name="BackBtn" Click="BackBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="ArrowLeft12" VerticalAlignment="Center"
+                            Margin="0, 2, 0, 0" />
+
+                            <TextBlock Margin="5, 0, 0, 0" VerticalAlignment="Center">
+                                Back
+                            </TextBlock>
+                        </StackPanel>
+                    </ui:Button>
+
+                    <Separator Width="5" Height="0" />
+
+                    <ui:Button Appearance="Secondary"
+                        Name="RefreshBtn" Click="RefreshBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="ArrowClockwise12" VerticalAlignment="Center"
+                            Margin="0, 2, 0, 0" />
+
+                            <TextBlock Margin="5, 0, 0, 0" VerticalAlignment="Center">
+                                Refresh
+                            </TextBlock>
+                        </StackPanel>
+                    </ui:Button>
+
+                    <Separator Width="5" Height="0" />
+
+                    <ui:Button Appearance="Primary"
+                        Name="ExportBtn" Click="ExportBtn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Print16" VerticalAlignment="Center"
+                            Margin="0, 2, 0, 0" />
+
+                            <TextBlock Margin="5, 0, 0, 0" VerticalAlignment="Center">
+                                Export
+                            </TextBlock>
+                        </StackPanel>
+                    </ui:Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ui:Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="#A2A2A2"
+                    BorderThickness="0, 0, 1, 0"
+                    Padding="5">
+                <StackPanel>
+                    <Label>Export type:</Label>
+                    <ComboBox SelectedIndex="0" Name="ExportType"
+                              SelectionChanged="ExportType_SelectionChanged">
+                        <ComboBoxItem>PowerPoint Presentation (.pptx)</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="False">Word Document (.docx)</ComboBoxItem>
+                        <ComboBoxItem>JSON file - importable (.json)</ComboBoxItem>
+                    </ComboBox>
+
+                    <StackPanel Name="PPP">
+                        <Separator Height="5" Width="0" />
+                        
+                        <Label>Size:</Label>
+                        <ComboBox SelectedIndex="0" Name="PPPSize"
+                                  SelectionChanged="PPPSize_SelectionChanged">
+                            <ComboBoxItem>3x2 (Default)</ComboBoxItem>
+                            <ComboBoxItem>2x2</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label>Mode:</Label>
+                        <ComboBox SelectedIndex="0" Name="PPPMode"
+                                  SelectionChanged="PPPMode_SelectionChanged">
+                            <ComboBoxItem>Flip on long edge (Default)</ComboBoxItem>
+                            <ComboBoxItem>Flip on short edge</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label>Printing advice:</Label>
+                        <TextBlock TextWrapping="Wrap" FontSize="12">
+                            When picking the right printing mode,
+                            you should consider:<LineBreak />
+                            - How do you want to flip the cards
+                            - If you want to flip the cards vertically,
+                            choose flip on long edge<LineBreak />
+                            - If you want to flip the cards horizontally,
+                            choose flip on short edge<LineBreak />
+                            It is <Bold>extremely</Bold> important to use
+                            the same mode when actually printing them as
+                            the one you select above.
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <ui:Grid Name="Preview" Grid.Column="1" Margin="5" />
+        </ui:Grid>
+    </Grid>
+</Page>
