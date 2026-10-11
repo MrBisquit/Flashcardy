@@ -13,7 +13,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
     <PackageReference Include="WPF-UI" Version="4.0.3" />
-    <PackageReference Include="WPF-UI.Violeta" Version="4.0.3.6" />
+    <PackageReference Include="WPF-UI.Violeta" Version="4.3.0.16" />
   </ItemGroup>
 
 </Project>
